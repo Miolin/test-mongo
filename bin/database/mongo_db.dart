@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 
 import '../core/database.dart';
@@ -5,6 +6,7 @@ import '../models/user_dto.dart';
 
 const _users = 'users';
 
+@Singleton(as:  Database)
 class MongoDatabase extends Database {
   late final Db _db;
 

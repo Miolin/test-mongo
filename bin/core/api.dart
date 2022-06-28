@@ -4,9 +4,13 @@ import 'package:shelf_router/shelf_router.dart';
 import 'request_handler.dart';
 
 abstract class Api {
-  String get apiPath;
+  final String apiPath;
   List<RequestHandler> get handlers;
   List<Middleware> get middleware => [];
+
+  const Api({
+    required this.apiPath,
+  });
 
   void init(Router router) {
     final apiRouter = Router(notFoundHandler: notFoundHandler);

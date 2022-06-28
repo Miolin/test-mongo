@@ -7,7 +7,9 @@ import 'package:shelf/src/response.dart';
 import 'http_method.dart';
 
 abstract class RequestHandler {
-  String get path;
+  final String path;
+
+  const RequestHandler(this.path);
 
   Future<Response> handle(Request request) async {
     try {

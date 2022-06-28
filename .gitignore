@@ -6,3 +6,4 @@
 build/
 
 *.g.dart
+*.config.dart
