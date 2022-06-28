@@ -6,6 +6,7 @@ import 'request_handler.dart';
 abstract class Api {
   String get apiPath;
   List<RequestHandler> get handlers;
+  List<Middleware> get middleware => [];
 
   void init(Router router) {
     final apiRouter = Router(notFoundHandler: notFoundHandler);
@@ -17,6 +18,11 @@ abstract class Api {
       apiRouter.all(secondVariant, handler.handle);
     }
     apiRouter.all('/<ignored|.*>', notFoundHandler);
+
+    Handler handler = apiRouter;
+    for (final service in middleware) {
+      handler = Pipeline().addMiddleware(service).addHandler(handler);
+    }
 
     router.mount(apiPath, apiRouter);
   }
