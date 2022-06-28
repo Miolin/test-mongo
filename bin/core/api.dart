@@ -24,7 +24,7 @@ abstract class Api {
       handler = Pipeline().addMiddleware(service).addHandler(handler);
     }
 
-    router.mount(apiPath, apiRouter);
+    router.mount(apiPath, handler);
   }
 
   Future<Response> notFoundHandler(Request request) async {
