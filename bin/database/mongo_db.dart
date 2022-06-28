@@ -10,7 +10,7 @@ class MongoDatabase extends Database {
 
   @override
   Future<void> initialize() async {
-    _db = Db("mongodb://localhost:27017/test");
+    _db = Db("mongodb://docker:mongopw@0.0.0.0:55000/test?authSource=admin");
     await _db.open();
   }
 
